@@ -90,8 +90,10 @@ source 脚本文件路径
 
 + 查看表的基本结构
 
+```sql
 desc 表名;
 desc emp;
+```
 
 + 查看数据库/表的创建语句
 
@@ -126,17 +128,21 @@ select * from 表名 where 条件;
 
 ### 运算符
 
-+ 算数运算符: +-*/%
-
-%：匹配任意数量的任意字符  
-_：匹配任意单个字符
++ 算数运算符: + - *  / %
 
 ```sql
 # 员工年工资
 select * from emp where sal * 12 > 20000;
 ```
 
-+ 比较运算符:
++ 比较运算符: > < >= <= = <>/!= between..and.. (not)in like
+
+```sql
+like :
+% 匹配任意个任意字符
+_ 匹配单个任意字符_
+```
+
 + 逻辑运算符： and or not
 
 ### 表
@@ -171,6 +177,21 @@ select * from emp where sal * 12 > 20000;
 
 ### DDL(数据定义语言)
 
+Data defineition language
+
+#### 创建表
+
+```sql
+create table [if not exists] 表名(
+    字段1 字段类型 [列级约束条件]
+	字段2 字段类型 [列级约束条件]
+	...
+	[表级约束条件]
+)
+```
+
+列级约束：not null , primary key
+
 #### 查看表
 
 + 显示数据库中的表
@@ -179,7 +200,7 @@ select * from emp where sal * 12 > 20000;
 show tables;
 ```
 
-+ 查看表的基本结构
++ 查看表中的基本结构
 
 ```sql
 desc 表名;
@@ -191,7 +212,7 @@ desc 表名;
 show create database 数据库名;
 show create table 表名;
 ```
-  
+
 #### 修改表
 
 + 添加字段
@@ -447,4 +468,227 @@ create table 表名(
 
 ```sql
 [constraint 外键名] foreign key (列名) references 主表名(主键);
+```
+
+#### 高级查询
+
+##### 排序
+
+order by 子句：对查询结果按指定字段进行排序	
+
+```sql
+	order by 字段1[,字段2] [asc|desc]
+	select * from emp order by sal desc;
+	```
+
+##### 限制数量
+
+limit子句：select语句返回所有匹配的行，它们可能是指定表中的每个行。为了前几行或中间几行，可使用limit子句
+
+```sql
+limit 行数（从第一行开始）
+limit 开始行（从0开始），行数
+
+select * from emp order by sal limit 1;
+select * from emp order by sal limit 3, 5;
+```
+##### 去重
+
+distinct关键字：用于返回唯一不同的值
+
+```sql
+#列出所有岗位，先查询再去重
+select distinct job from mep;
+```
+
+##### 组合查询
+
+union 操作符：执行多个查询（多条select语句），将结果合并为单个结果集返回
+
+```sql
+select 字段1[,字段2,...] from 表1
+union
+select 字段1[,字段2,...] from 表2;
+```
+
+#### 函数
+##### 数值函数
++ cell(x): 向上取整
++ floor(x): 向下取整
++ round(x,y=0): 四舍五入
++ truncate(x,y): 截断函数
++ mod(x,y): 返回x/y的余数
++ rand(): 生成0-1的随机数
+
+##### 字符函数
+
++ concat(s1, s2, ...):：字符串连接，如果任何一个参数为null，则返回值为null
++ concat_ws(x, s1, s2, ...)：指定分隔符的字符连接函数，x是连接分隔符， 如果分隔符为null，则结果为null
++ lower(str)：大写转小写
++ upper(str)：小写转大写
++ length(str)：字符串长度
++ ltrim(str)：删除字符串左侧空格
++ rtrim(str)：删除字符串右侧空格
++ trim(str)：删除字符串两侧空格
++ substr(str, n, len)：截取子字符串，字符串str从n的位置截取长度为len的字符串，如果n为负数，则子字符串的位置起始于字符串结尾的n个字符
++ left(str, n)：返回字符串str的最左边n个字符
++ right(str, n)：返回字符串str的最右边n个字符
++ replace(str, from_str, to_str)：替换函数，字符串str中所有的字符串from_str均被to_str替换，然后返回这个字符串
++ format(x, n)：将数字x格式化，并以四舍五入的方式保留小数点后n位，结果以字符串的形式返回。若n为0， 则返回结果不含小数部分。
+
+##### 日期时间函数
+
++ curdate()/current_date()：获取当前日期，YYYY-MM-DD 格式
++ curtime()/current_time()：获取当前时间，HH:MM:SS 格式
+
+##### 分组查询
+
+###### 创建分组
+
+group by 子句：根据一个或多个字段对结果进行分组，在分组的字段上可以使用count，sum，avg等函数
+
+```sql
+select 字段1[字段2, function(字段1), function(字段2)...]
+from 表
+group by 字段1;
+```
+
+```sql
+select count(*) from emp where deptno = 20;
+
+select deptno, coutn(*)
+from emp
+group by deptno;
+
+```
+
+###### 过滤分组
+
+having子句：having非常类似于where。唯一的差别是where过滤行，而having过滤分组。having必须和group by 一起使用
+having和where的区别也可以理解为，where是分组前过滤的，having是分组后过滤的
+
+```sql
+select deptno, count(*)
+from emp
+group by deptno
+having count(*) > 5;
+```
+
+##### select 完整格式
+
+5. select 字段名
+1. from ...
+2. where ...
+3. group by ...
+4. having ...
+5. order by ...
+6. limit ...
+##### 连接查询
+
+```sql
+select * from emp, dept;
+```
+
+###### 内连接
+
+###### 外连接
+
+##### 子查询
+
+子查询一般与[not] in 结合使用，也可以使用其他运算符：> < = !=
+###### 使用子查询过滤
+
+###### 子查询作为计算字段
+
+#### 正则表达式
+
+regexp操作符
+
+like和regexp的区别
+
+##### 匹配单个实例
+
++ |：表示匹配其中之一，使用 | 从功能上类似or
++ [ ]：匹配字符之一，[ ]是另一种形式的or语句。[123]为[1|2|3]的缩写
++ \[-]: 匹配范围 ，使用-来定义一个范围。例如：[1-3]、[a-z]。
++ \\\\：转义字符，多数正则表达式使用单个反斜杠作为转义字符，但mysql要求两个反斜杠
++ 匹配字符类：存在找出你自己经常使用的 可以使用预定义的字符集，称为字符类
+
+|类|说明|
+|--|--|
+|\[\[alnum:]]|任意字母和数字|
+|\[\[:alpha:]]|任意字符(同\[a-zA-Z0-9])|
+|\[\[:blank:]]|空格和制表(同\[\\\\t])|
+|...|...|
+
+##### 匹配多个实例
+
+#### 存储过程
+
+##### 使用存储过程
+
+```sql
+create procedure 函数名()
+begin
+	常用语句
+end;
+
+# 调用
+call 函数名();
+
+# 删除
+drop procedure if exists 函数名;
+
+```
+
+##### 参数
+
+```sql
+#参数类型
+# in    可读不可修改
+# out   不可读可修改
+# inout 可读可修改
+```
+
+##### 变量
+
+```sql
+#定义变量
+declare 变量名 变量的数据类型 [default 默认值]：
+#变量赋值
+set 变量名 = 要赋的值;
+```
+
+##### 逻辑语句
+
++ 条件语句(if 、case)
+
+```sql
+if condition then
+	逻辑代码;
+[elseif condition then
+	逻辑代码;]
+[else
+	 逻辑代码;
+]
+end if;
+
+case
+	when condition1 then
+		逻辑代码
+	when condition2 then
+		逻辑代码
+	else
+		逻辑代码
+end case;
+```
++ 循环语句(while、repeat)
+
+```sql
+while 循环条件 do
+end while;
+
+repeat
+	逻辑代码
+until condition end repeat;
 ```

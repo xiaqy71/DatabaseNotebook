@@ -1,0 +1,158 @@
+{
+  "main": {
+    "id": "e9df8927cce5a556",
+    "type": "split",
+    "children": [
+      {
+        "id": "60e5d41d217c5576",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2f3134ef73ee2094",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mysql笔记.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dcf0d70624eb78a1",
+    "type": "split",
+    "children": [
+      {
+        "id": "13ad59171f19a872",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "55917e65cb320f25",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "995a5af1e61f85a2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "9975984fc8f25189",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "ab622fb4fd924c61",
+    "type": "split",
+    "children": [
+      {
+        "id": "366cf3049f3e2b32",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "36713bad5d2f6525",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Mysql笔记.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0a406b2c8de473d9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Mysql笔记.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c548bb7fcc13f5e0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "5495d50befdcdb35",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Mysql笔记.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "2f3134ef73ee2094",
+  "lastOpenFiles": [
+    "Pasted image 20230815174758.png",
+    "Mysql笔记.md",
+    "作业/8-15/01.png",
+    "作业/8-15/错题题解.pdf",
+    "作业/8-15/错题题解.md",
+    "Pasted image 20230815173745.png"
+  ]
+}
